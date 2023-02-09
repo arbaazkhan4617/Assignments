@@ -1,0 +1,38 @@
+public class Bank implements Maker, Operator {
+
+    private Customer[] customers = new Customer[1000];
+    private LoanProduct[] loanProducts = new LoanProduct[1000];
+    private int size = 0;
+    private int noOfCustomers = 0;
+    private int noOfLoans = 0;
+
+    void localInner(){
+	class IteratorCustomer implements MyIterator{
+
+        static int index = 0;
+        Bank b1 = new Bank();
+        @Override
+        public boolean hasNext() {
+            if(index >= b1.noOfCustomers) return true;
+            else return false;
+        }
+
+        @Override
+        public Customer next() {
+            return b1.customers[index++] = null;
+        }
+
+        @Override
+        public void remove() {
+            b1.customers[index--] = null;
+        }
+    }
+
+    public MyIterator getIndex(){
+        MyIterator i = new IteratorCustomer();
+        return i;
+    }
+}
+}
+
+
